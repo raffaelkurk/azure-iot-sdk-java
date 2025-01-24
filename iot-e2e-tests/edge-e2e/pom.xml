@@ -2,7 +2,7 @@
     <parent>
         <groupId>com.microsoft.azure.sdk.iot</groupId>
         <artifactId>iot-e2e-tests</artifactId>
-        <version>0.26.0</version>
+        <version>1.0.0</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -45,6 +45,13 @@
             <version>1.0.56</version>
         </dependency>
 
+        <!--This upgrades a sub-dependency from the above io.swagger:swagger-parser package-->
+        <dependency>
+            <groupId>org.yaml</groupId>
+            <artifactId>snakeyaml</artifactId>
+            <version>2.0</version>
+        </dependency>
+
         <dependency>
             <groupId>com.fasterxml.jackson.datatype</groupId>
             <artifactId>jackson-datatype-jsr310</artifactId>
@@ -54,7 +61,7 @@
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-simple</artifactId>
-            <version>1.7.25</version>
+            <version>1.7.29</version>
         </dependency>
 
         <dependency>
@@ -71,7 +78,7 @@
         <dependency>
             <groupId>com.microsoft.azure.sdk.iot.samples.device</groupId>
             <artifactId>unix-domain-socket-sample</artifactId>
-            <version>1.18.0</version>
+            <version>1.0.0</version>
             <scope>compile</scope>
         </dependency>
     </dependencies>
@@ -128,5 +135,4 @@
             </plugin>
         </plugins>
     </build>
-
 </project>

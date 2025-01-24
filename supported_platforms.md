@@ -24,9 +24,9 @@ Default locale: en_US, platform encoding: Cp1252
 
 OS name: "windows server 2016", version: "10.0", arch: "amd64", family: "windows"
 
-## Ubuntu 1604
+## Ubuntu 2204
 
-Note that, while we only directly test on Ubuntu 18.04, we do generally support other popular Linux distributions. 
+Note that, while we only directly test on Ubuntu 22.04, we do generally support other popular Linux distributions. 
 
 Nightly test platform details:
 Apache Maven 3.8.1
@@ -55,5 +55,5 @@ Older API versions have known issues that we don't plan to fix. For additional d
 
 - This library has known compatibility issues with JDK 7 and below, and those JDK versions are not supported.
 - This library does not officially support being run on MacOS.
-- This library does not officially support minification via [Proguard](http://android-doc.github.io/tools/help/proguard.html).
-- This library does not officially support being used in [Kotlin](https://kotlinlang.org) applications.
+- This library does not officially support minification via Proguard.
+- This library does not officially support being used in Kotlin applications.

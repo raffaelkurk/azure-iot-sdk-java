@@ -26,9 +26,11 @@ import com.microsoft.azure.storage.blob.CloudBlockBlob;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
+import tests.integration.com.microsoft.azure.sdk.iot.helpers.annotations.FlakeyTest;
 import tests.integration.com.microsoft.azure.sdk.iot.helpers.proxy.HttpProxyServer;
 import tests.integration.com.microsoft.azure.sdk.iot.helpers.proxy.impl.DefaultHttpProxyServer;
 import tests.integration.com.microsoft.azure.sdk.iot.helpers.IntegrationTest;
@@ -54,7 +56,6 @@ import java.util.concurrent.TimeoutException;
 import java.util.function.Function;
 
 import static com.microsoft.azure.sdk.iot.service.messaging.IotHubServiceClientProtocol.AMQPS_WS;
-import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 import static org.junit.Assume.assumeFalse;
 
@@ -204,6 +205,28 @@ public class FileUploadTests extends IntegrationTest
     }
 
     @Test (timeout = MAX_MILLISECS_TIMEOUT_KILL_TEST)
+    public void getSasUriWithoutUploadConnectionToggle() throws URISyntaxException, IOException, InterruptedException, IotHubException, GeneralSecurityException, IotHubClientException
+    {
+        // arrange
+        DeviceClient deviceClient = setUpDeviceClient(testInstance.protocol);
+
+        for (int i = 0; i < 2; i++)
+        {
+            deviceClient.open(false);
+
+            // act
+            deviceClient.getFileUploadSasUri(new FileUploadSasUriRequest(testInstance.fileUploadState.blobName));
+
+            // closing and opening the client (later) to simulate disconnection and reconnection.
+            deviceClient.close();
+        }
+
+        // assert
+        tearDownDeviceClient(deviceClient);
+    }
+
+    @Test (timeout = MAX_MILLISECS_TIMEOUT_KILL_TEST)
+    @Ignore("Current test infrastructure doesn't support file upload to a storage account")
     public void getAndCompleteSasUriWithUpload() throws URISyntaxException, IOException, InterruptedException, IotHubException, GeneralSecurityException, StorageException, TimeoutException, IotHubClientException
     {
         // Android has some compatibility issues with the azure storage SDK
@@ -238,6 +261,7 @@ public class FileUploadTests extends IntegrationTest
     }
 
     @Test (timeout = MAX_MILLISECS_TIMEOUT_KILL_TEST)
+    @Ignore("Current test infrastructure doesn't support file upload to a storage account")
     public void getAndCompleteSasUriWithMultipleUploads() throws URISyntaxException, IOException, InterruptedException, IotHubException, GeneralSecurityException, StorageException, TimeoutException, IotHubClientException
     {
         // Android has some compatibility issues with the azure storage SDK

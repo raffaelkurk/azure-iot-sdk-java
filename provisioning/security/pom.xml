@@ -7,7 +7,7 @@
     <parent>
         <groupId>com.microsoft.azure.sdk.iot.provisioning</groupId>
         <artifactId>provisioning</artifactId>
-        <version>1.8.1</version>
+        <version>1.0.0</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.microsoft.azure.sdk.iot.provisioning.security</groupId>
@@ -28,7 +28,7 @@
     <properties>
         <!--
         By default, don't skip unit tests. Can override this behavior by passing in
-        "-DskipUnitTests=true" to your maven command such as "mvn install -DskipUnitTests=true"
+        "-DskipUnitTests=true", "-DskipUnitTests", "-DskipTests=true" or "-DskipTests"  to your maven command such as "mvn install -DskipUnitTests"
         -->
         <skipUnitTests>false</skipUnitTests>
     </properties>
